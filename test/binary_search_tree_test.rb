@@ -88,4 +88,24 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal 3, result
   end
 
+  def test_include?
+    @tree.insert(61, "Bill & Ted's Excellent Adventure")
+
+    assert @tree.include?(61)
+  end
+
+  def test_depth_of_single_node
+    @tree.insert(61, "Bill & Ted's Excellent Adventure")
+
+    assert_equal 1, @tree.depth_of(61)
+  end
+
+  def test_depth_of_several_nodes
+    @tree.insert(61, "Bill & Ted's Excellent Adventure")
+    @tree.insert(16, "Johnny English")
+    @tree.insert(92, "Sharknado 3")
+
+    assert_equal 2, @tree.depth_of(92)
+  end
+
 end
