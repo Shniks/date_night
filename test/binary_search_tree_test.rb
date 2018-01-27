@@ -10,4 +10,10 @@ class BinarySearchTreeTest < Minitest::Test
     assert_instance_of BinarySearchTree, tree
   end
 
+  def test_if_head_node_is_initially_nil
+    tree = BinarySearchTree.new
+
+    assert_nil nil, tree.head
+  end
+
 end
