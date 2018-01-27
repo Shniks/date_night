@@ -47,4 +47,13 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal 1, result
   end
 
+  def test_it_can_insert_a_fourth_node
+    @tree.insert(61, "Bill & Ted's Excellent Adventure")
+    @tree.insert(16, "Johnny English")
+    @tree.insert(92, "Sharknado 3")
+    result = @tree.insert(50, "Hannibal Buress: Animal Furnace")
+
+    assert_equal 2, result
+  end
+
 end
