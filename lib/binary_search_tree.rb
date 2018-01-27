@@ -37,7 +37,7 @@ class BinarySearchTree
       @current_node = @current_node.node_right
     end
     @depth += 1
-      score_direction(score, title)
+    score_direction(score, title)
   end
 
   def node_insert_direction(score, title)
