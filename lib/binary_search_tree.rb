@@ -59,4 +59,12 @@ class BinarySearchTree
     score_direction(score, title)
   end
 
+  def max
+    @current_node = @head
+    until @current_node.node_right == nil do
+      @current_node = @current_node.node_right
+    end
+    max_value = {@current_node.title => @current_node.score }
+  end
+
 end

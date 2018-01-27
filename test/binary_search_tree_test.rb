@@ -88,4 +88,32 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal 3, result
   end
 
+  def test_it_can_find_movie_with_max_score
+    @tree.insert(61, "Bill & Ted's Excellent Adventure")
+    @tree.insert(16, "Johnny English")
+    @tree.insert(92, "Sharknado 3")
+    @tree.insert(50, "Hannibal Buress: Animal Furnace")
+    expected = {"Sharknado 3"=>92}
+
+    assert_equal expected, @tree.max
+  end
+
+  def test_it_find_another_movie_with_max_score
+    @tree.insert(61, "Bill & Ted's Excellent Adventure")
+    @tree.insert(16, "Johnny English")
+    @tree.insert(92, "Sharknado 3")
+    @tree.insert(50, "Hannibal Buress: Animal Furnace")
+    @tree.insert(40, "Transformers1")
+    @tree.insert(45, "Transformers2")
+    @tree.insert(55, "Transformers3")
+    @tree.insert(94, "Transformers4")
+    @tree.insert(90, "Transformers5")
+    @tree.insert(35, "Transformers6")
+    @tree.insert(98, "Transformers7")
+    @tree.insert(70, "Transformers8")
+    expected = {"Transformers7"=>98}
+
+    assert_equal expected, @tree.max
+  end
+
 end
