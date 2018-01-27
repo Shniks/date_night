@@ -23,9 +23,9 @@ class BinarySearchTree
 
   def score_direction(score, title)
     if score < @current_node.score
-      score_left(score, title)
+      left_of_head(score, title)
     else
-      score_right(score, title)
+      right_of_head(score, title)
     end
   end
 
@@ -47,7 +47,7 @@ class BinarySearchTree
     end
   end
 
-  def score_left(score, title)
+  def left_of_head(score, title)
     if @current_node.node_left == nil
       @current_node.node_left = Node.new(score, title)
       @depth += 1
@@ -57,7 +57,7 @@ class BinarySearchTree
     @depth
   end
 
-  def score_right(score, title)
+  def right_of_head(score, title)
     if @current_node.node_right == nil
       @current_node.node_right = Node.new(score, title)
       @depth += 1
