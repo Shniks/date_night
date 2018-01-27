@@ -64,7 +64,7 @@ class BinarySearchTree
     until @current_node.node_right == nil do
       @current_node = @current_node.node_right
     end
-    {@current_node.title => @current_node.score }
+    { @current_node.title => @current_node.score }
   end
 
   def min
@@ -72,7 +72,7 @@ class BinarySearchTree
     until @current_node.node_left == nil do
       @current_node = @current_node.node_left
     end
-    {@current_node.title => @current_node.score }
+    { @current_node.title => @current_node.score }
   end
 
 end
