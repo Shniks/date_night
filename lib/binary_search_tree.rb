@@ -4,7 +4,6 @@ class BinarySearchTree
 
   def initialize
     @head = nil
-    @depth = nil  #Do I even need this here since I have instance variables below?
   end
 
   def insert_head_node(score, title)
@@ -63,27 +62,9 @@ class BinarySearchTree
       @current_node.node_right = Node.new(score, title)
       @depth += 1
     else
-    node_insert_direction(score, title)
+    node_travel_direction(score, title)
     end
     @depth
   end
-
-  # def score_left(score, title)
-  #   while @current_node.node_left != nil
-  #     node_travel_direction(score, title)
-  #     @depth += 1
-  #   end
-  #   node_insert_direction(score, title)
-  #   @depth += 1
-  # end
-  #
-  # def score_right(score, title)
-  #   while @current_node.node_right != nil
-  #     node_travel_direction(score, title)
-  #     @depth += 1
-  #   end
-  #   node_insert_direction(score, title)
-  #   @depth += 1
-  # end
 
 end
