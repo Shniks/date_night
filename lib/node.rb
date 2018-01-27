@@ -6,9 +6,9 @@ class Node
                 :node_right
 
   def initialize (score, title)
-    @score = score
-    @title = title
-    @node_left = nil
+    @score      = score
+    @title      = title
+    @node_left  = nil
     @node_right = nil
   end
 
