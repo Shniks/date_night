@@ -39,14 +39,6 @@ class BinarySearchTree
     score_direction(score, title)
   end
 
-  def node_insert_direction(score, title)
-    if score < @current_node.score
-      @current_node.node_left = Node.new(score, title)
-    else
-      @current_node.node_right = Node.new(score, title)
-    end
-  end
-
   def left_of_head(score, title)
     if @current_node.node_left == nil
       @current_node.node_left = Node.new(score, title)
