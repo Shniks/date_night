@@ -29,16 +29,6 @@ class BinarySearchTree
     end
   end
 
-  def node_travel_direction(score, title)
-    if score < @current_node.score
-      @current_node = @current_node.node_left
-    else
-      @current_node = @current_node.node_right
-    end
-    @depth += 1
-    score_direction(score, title)
-  end
-
   def left_of_head(score, title)
     if @current_node.node_left == nil
       @current_node.node_left = Node.new(score, title)
@@ -57,6 +47,16 @@ class BinarySearchTree
       node_travel_direction(score, title)
     end
     @depth
+  end
+
+  def node_travel_direction(score, title)
+    if score < @current_node.score
+      @current_node = @current_node.node_left
+    else
+      @current_node = @current_node.node_right
+    end
+    @depth += 1
+    score_direction(score, title)
   end
 
 end
