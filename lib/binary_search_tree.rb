@@ -4,25 +4,25 @@ class BinarySearchTree
 
   def initialize
     @head = nil
-    @depth = nil
+    @depth = nil  #Do I even need this here since I have instance variables below?
   end
 
-  def insert_first_node(score, title)
+  def insert_head_node(score, title)
     @head = Node.new(score, title)
   end
 
   def insert(score, title)
     if @head.nil?
-      insert_first_node(score, title)
+      insert_head_node(score, title)
       @depth = 0
     else
+      @current_node = @head
+      @depth = 0
       score_direction(score, title)
     end
   end
 
   def score_direction(score, title)
-    @current_node = @head
-    @depth = 0
     if score < @current_node.score
       score_left(score, title)
     else
@@ -36,6 +36,7 @@ class BinarySearchTree
     else
       @current_node = @current_node.node_right
     end
+      score_direction(score, title)
   end
 
   def node_insert_direction(score, title)
@@ -47,21 +48,41 @@ class BinarySearchTree
   end
 
   def score_left(score, title)
-    while @current_node.node_left != nil
-      node_travel_direction(score, title)
+    if @current_node.node_left == nil
+      @current_node.node_left = Node.new(score, title)
       @depth += 1
+    else
+      node_travel_direction(score, title)
     end
-    node_insert_direction(score, title)
-    @depth += 1
+    @depth
   end
 
   def score_right(score, title)
-    while @current_node.node_right != nil
-      node_travel_direction(score, title)
+    if @current_node.node_right == nil
+      @current_node.node_right = Node.new(score, title)
       @depth += 1
-    end
+    else
     node_insert_direction(score, title)
-    @depth += 1
+    end
+    @depth
   end
+
+  # def score_left(score, title)
+  #   while @current_node.node_left != nil
+  #     node_travel_direction(score, title)
+  #     @depth += 1
+  #   end
+  #   node_insert_direction(score, title)
+  #   @depth += 1
+  # end
+  #
+  # def score_right(score, title)
+  #   while @current_node.node_right != nil
+  #     node_travel_direction(score, title)
+  #     @depth += 1
+  #   end
+  #   node_insert_direction(score, title)
+  #   @depth += 1
+  # end
 
 end
