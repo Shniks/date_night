@@ -66,7 +66,7 @@ class BinarySearchTreeTest < Minitest::Test
     @tree.insert(55, "Transformers3")
     @tree.insert(94, "Transformers4")
     @tree.insert(90, "Transformers5")
-    result = @tree.insert(35, "Transformers4")
+    result = @tree.insert(35, "Transformers6")
 
     assert_equal 4, result
   end
