@@ -36,6 +36,7 @@ class BinarySearchTree
     else
       @current_node = @current_node.node_right
     end
+    @depth += 1
       score_direction(score, title)
   end
 
