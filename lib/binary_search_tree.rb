@@ -30,26 +30,38 @@ class BinarySearchTree
     end
   end
 
+  def node_travel_direction(score, title)
+    if score < @current_node.score
+      @current_node = @current_node.node_left
+    else
+      @current_node = @current_node.node_right
+    end
+  end
+
+  def node_insert_direction(score, title)
+    if score < @current_node.score
+      @current_node.node_left = Node.new(score, title)
+    else
+      @current_node.node_right = Node.new(score, title)
+    end
+  end
+
   def score_left(score, title)
     while @current_node.node_left != nil
-      @current_node = @current_node.node_left
+      node_travel_direction(score, title)
       @depth += 1
     end
-    @current_node.node_left = Node.new(score, title)
+    node_insert_direction(score, title)
     @depth += 1
   end
 
   def score_right(score, title)
     while @current_node.node_right != nil
-      @current_node = @current_node.node_right
+      node_travel_direction(score, title)
       @depth += 1
     end
-    @current_node.node_right = Node.new(score, title)
+    node_insert_direction(score, title)
     @depth += 1
   end
-
-
-
-
 
 end
