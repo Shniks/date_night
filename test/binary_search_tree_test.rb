@@ -13,7 +13,7 @@ class BinarySearchTreeTest < Minitest::Test
   end
 
   def test_if_head_node_is_initially_nil
-    assert_nil nil, @tree.head
+    assert_nil nil, @head
   end
 
   def test_it_can_insert_first_node
@@ -30,6 +30,21 @@ class BinarySearchTreeTest < Minitest::Test
     result = @tree.insert(61, "Bill & Ted's Excellent Adventure")
 
     assert_equal 0, result
+  end
+
+  def test_it_can_insert_a_second_node_to_the_left
+    @tree.insert(61, "Bill & Ted's Excellent Adventure")
+    result = @tree.insert(16, "Johnny English")
+
+    assert_equal 1, result
+  end
+
+  def test_it_can_insert_a_third_node_to_the_right
+    @tree.insert(61, "Bill & Ted's Excellent Adventure")
+    @tree.insert(16, "Johnny English")
+    result = @tree.insert(92, "Sharknado 3")
+
+    assert_equal 1, result
   end
 
 end
