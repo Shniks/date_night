@@ -11,26 +11,28 @@ class BinarySearchTree
     @head = Node.new(score, title)
   end
 
-  def score_left
+  def score_left(score, title)
     while @current_node.node_left != nil
       @current_node = @current_node.node_left
     end
+    @current_node.node_left = Node.new(score, title)
     @depth += 1
   end
 
-  def score_right
+  def score_right(score, title)
     while @current_node.node_right != nil
       @current_node = @current_node.node_right
     end
+    @current_node.node_right = Node.new(score, title)
     @depth += 1
   end
 
   def score_direction(score, title)
     @current_node = @head
     if score < @current_node.score
-      score_left
+      score_left(score, title)
     else
-      score_right
+      score_right(score, title)
     end
     @depth
   end
