@@ -54,7 +54,7 @@ class BinarySearchTree
       @current_node.node_right = Node.new(score, title)
       @depth += 1
     else
-    node_travel_direction(score, title)
+      node_travel_direction(score, title)
     end
     @depth
   end
