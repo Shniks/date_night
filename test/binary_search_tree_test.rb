@@ -61,11 +61,11 @@ class BinarySearchTreeTest < Minitest::Test
     @tree.insert(16, "Johnny English")
     @tree.insert(92, "Sharknado 3")
     @tree.insert(50, "Hannibal Buress: Animal Furnace")
-    @tree.insert(40, "Transformers")
+    @tree.insert(40, "Transformers1")
     @tree.insert(45, "Transformers2")
     @tree.insert(55, "Transformers3")
     @tree.insert(94, "Transformers4")
-    @tree.insert(90, "Transformers4")
+    @tree.insert(90, "Transformers5")
     result = @tree.insert(35, "Transformers4")
 
     assert_equal 4, result
@@ -76,14 +76,14 @@ class BinarySearchTreeTest < Minitest::Test
     @tree.insert(16, "Johnny English")
     @tree.insert(92, "Sharknado 3")
     @tree.insert(50, "Hannibal Buress: Animal Furnace")
-    @tree.insert(40, "Transformers")
+    @tree.insert(40, "Transformers1")
     @tree.insert(45, "Transformers2")
     @tree.insert(55, "Transformers3")
     @tree.insert(94, "Transformers4")
-    @tree.insert(90, "Transformers4")
-    @tree.insert(35, "Transformers4")
-    @tree.insert(98, "Transformers4")
-    result = @tree.insert(70, "Transformers4")
+    @tree.insert(90, "Transformers5")
+    @tree.insert(35, "Transformers6")
+    @tree.insert(98, "Transformers7")
+    result = @tree.insert(70, "Transformers8")
 
     assert_equal 3, result
   end
