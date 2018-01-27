@@ -56,66 +56,6 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal 2, result
   end
 
-  def test_it_can_insert_a_fifth_node
-    @tree.insert(61, "Bill & Ted's Excellent Adventure")
-    @tree.insert(16, "Johnny English")
-    @tree.insert(92, "Sharknado 3")
-    @tree.insert(50, "Hannibal Buress: Animal Furnace")
-    result = @tree.insert(40, "Transformers")
-
-    assert_equal 3, result
-  end
-
-  def test_it_can_insert_a_sixth_node
-    @tree.insert(61, "Bill & Ted's Excellent Adventure")
-    @tree.insert(16, "Johnny English")
-    @tree.insert(92, "Sharknado 3")
-    @tree.insert(50, "Hannibal Buress: Animal Furnace")
-    @tree.insert(40, "Transformers")
-    result = @tree.insert(45, "Transformers2")
-
-    assert_equal 4, result
-  end
-
-  def test_it_can_insert_an_seventh_node
-    @tree.insert(61, "Bill & Ted's Excellent Adventure")
-    @tree.insert(16, "Johnny English")
-    @tree.insert(92, "Sharknado 3")
-    @tree.insert(50, "Hannibal Buress: Animal Furnace")
-    @tree.insert(40, "Transformers")
-    @tree.insert(45, "Transformers2")
-    result = @tree.insert(55, "Transformers3")
-
-    assert_equal 3, result
-  end
-
-  def test_it_can_insert_a_eighth_node
-    @tree.insert(61, "Bill & Ted's Excellent Adventure")
-    @tree.insert(16, "Johnny English")
-    @tree.insert(92, "Sharknado 3")
-    @tree.insert(50, "Hannibal Buress: Animal Furnace")
-    @tree.insert(40, "Transformers")
-    @tree.insert(45, "Transformers2")
-    @tree.insert(55, "Transformers3")
-    result = @tree.insert(94, "Transformers4")
-
-    assert_equal 2, result
-  end
-
-  def test_it_can_insert_a_ninth_node
-    @tree.insert(61, "Bill & Ted's Excellent Adventure")
-    @tree.insert(16, "Johnny English")
-    @tree.insert(92, "Sharknado 3")
-    @tree.insert(50, "Hannibal Buress: Animal Furnace")
-    @tree.insert(40, "Transformers")
-    @tree.insert(45, "Transformers2")
-    @tree.insert(55, "Transformers3")
-    @tree.insert(94, "Transformers4")
-    result = @tree.insert(90, "Transformers4")
-
-    assert_equal 2, result
-  end
-
   def test_it_can_insert_a_tenth_node
     @tree.insert(61, "Bill & Ted's Excellent Adventure")
     @tree.insert(16, "Johnny English")
@@ -129,22 +69,6 @@ class BinarySearchTreeTest < Minitest::Test
     result = @tree.insert(35, "Transformers4")
 
     assert_equal 4, result
-  end
-
-  def test_it_can_insert_an_eleventh_node
-    @tree.insert(61, "Bill & Ted's Excellent Adventure")
-    @tree.insert(16, "Johnny English")
-    @tree.insert(92, "Sharknado 3")
-    @tree.insert(50, "Hannibal Buress: Animal Furnace")
-    @tree.insert(40, "Transformers")
-    @tree.insert(45, "Transformers2")
-    @tree.insert(55, "Transformers3")
-    @tree.insert(94, "Transformers4")
-    @tree.insert(90, "Transformers4")
-    @tree.insert(35, "Transformers4")
-    result = @tree.insert(98, "Transformers4")
-
-    assert_equal 3, result
   end
 
   def test_it_can_insert_a_twelfth_node
