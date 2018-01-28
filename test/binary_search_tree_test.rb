@@ -80,6 +80,7 @@ class BinarySearchTreeTest < Minitest::Test
     @tree.insert(92, "Sharknado 3")
     @tree.insert(50, "Hannibal Buress: Animal Furnace")
 
+    assert_nil nil, @tree.depth_of(nil)
     assert_equal 1, @tree.depth_of(92)
     refute_equal 2, @tree.depth_of(92)
     assert_equal 2, @tree.depth_of(50)
