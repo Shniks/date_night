@@ -72,6 +72,14 @@ class BinarySearchTree
     @depth_values[score]
   end
 
+  def min
+    @current_node = @head
+    until @current_node.node_left == nil do
+      @current_node = @current_node.node_left
+    end
+    { @current_node.title => @current_node.score }
+  end
+
   def max
     @current_node = @head
     until @current_node.node_right == nil do
@@ -80,12 +88,27 @@ class BinarySearchTree
     { @current_node.title => @current_node.score }
   end
 
-  def min
-    @current_node = @head
-    until @current_node.node_left == nil do
-      @current_node = @current_node.node_left
-    end
-    { @current_node.title => @current_node.score }
+  def sort
+    sorted_movies = []
+    sort_left_of_head(sorted_movies)
+    sorted_movies << { @head.title => @head.score }
+    sort_right_of_head(sorted_movies)
+    sorted_movies
   end
+
+  def sort_left_of_head
+    # Call the min method and put the last value in the array
+    # Per the min method, the last value is now the current node
+    # Check to see if the right node is nil
+    # If not, then move one to the right and make that current node
+    # Call min method again (recursion)
+    # Check to see if the right node is nil
+    # If nil, move up one node
+    # Not sure how to do this for multiple branches
+    # Also how does one move up one node (we have a node_next, but no node
+    # previous) - maybe if the current_node.next_node.next_node is nil,
+    # then can do previous_node = current_node?
+  end
+
 
 end

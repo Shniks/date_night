@@ -137,4 +137,17 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal expected, @tree.min
   end
 
+  def test_it_can_sort_the_tree
+    skip
+    @tree.insert(61, "Bill & Ted's Excellent Adventure")
+    @tree.insert(16, "Johnny English")
+    @tree.insert(92, "Sharknado 3")
+    @tree.insert(50, "Hannibal Buress: Animal Furnace")
+    expected = [{"Johnny English"=>16},
+    {"Hannibal Buress: Animal Furnace"=>50},
+    {"Bill & Ted's Excellent Adventure"=>61}, {"Sharknado 3"=>92}]
+
+    assert_equal expected, @tree.sort
+  end
+
 end
