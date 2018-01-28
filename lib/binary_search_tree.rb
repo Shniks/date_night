@@ -4,6 +4,7 @@ class BinarySearchTree
 
   def initialize
     @head = nil
+    @depth_values = {}
   end
 
   def insert_head_node(score, title)
@@ -36,6 +37,7 @@ class BinarySearchTree
     else
       node_travel_direction(score, title)
     end
+    @depth_values[score] = @depth
     @depth
   end
 
@@ -46,6 +48,7 @@ class BinarySearchTree
     else
       node_travel_direction(score, title)
     end
+    @depth_values[score] = @depth
     @depth
   end
 
@@ -59,6 +62,11 @@ class BinarySearchTree
     score_direction(score, title)
   end
 
+  def depth_of(score)
+    return nil if score.nil?
+    @depth_values[score]
+  end
+    
   def max
     @current_node = @head
     until @current_node.node_right == nil do
