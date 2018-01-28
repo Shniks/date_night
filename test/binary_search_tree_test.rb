@@ -85,7 +85,7 @@ class BinarySearchTreeTest < Minitest::Test
     assert @tree.include?(98)
     refute @tree.include?(72)
     refute @tree.include?(37)
-    refute @tree.include?(22)
+    refute @tree.include?(-22)
   end
 
   def test_it_can_find_depth_of_any_movie
@@ -97,7 +97,7 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal 1, @tree.depth_of(92)
     refute_equal 2, @tree.depth_of(92)
     assert_equal 2, @tree.depth_of(50)
-    refute_equal 3, @tree.depth_of(50)
+    refute_equal 3, @tree.depth_of(-50)
   end
 
   def test_it_can_find_movie_with_max_score
