@@ -33,14 +33,14 @@ class BinarySearchTreeTest < Minitest::Test
     assert_nil nil, result.node_right
   end
 
-  def test_it_can_insert_a_node
+  def test_it_can_insert_and_find_depth_for_a_node
     result = @tree.insert(61, "Bill & Ted's Excellent Adventure")
 
     assert_equal 0, result
     refute_equal 1, result
   end
 
-  def test_it_can_insert_a_second_node_to_the_left
+  def test_it_can_insert_and_find_depth_for_a_second_node_to_the_left
     @tree.insert(61, "Bill & Ted's Excellent Adventure")
     result = @tree.insert(16, "Johnny English")
 
@@ -48,7 +48,7 @@ class BinarySearchTreeTest < Minitest::Test
     refute_equal 0, result
   end
 
-  def test_it_can_insert_a_third_node_to_the_right
+  def test_it_can_insert_and_find_depth_for_a_third_node_to_the_right
     @tree.insert(61, "Bill & Ted's Excellent Adventure")
     @tree.insert(16, "Johnny English")
     result = @tree.insert(92, "Sharknado 3")
@@ -57,7 +57,7 @@ class BinarySearchTreeTest < Minitest::Test
     refute_equal 2, result
   end
 
-  def test_it_can_insert_a_fourth_node
+  def test_it_can_insert_and_find_depth_for_a_fourth_node
     @tree.insert(61, "Bill & Ted's Excellent Adventure")
     @tree.insert(16, "Johnny English")
     @tree.insert(92, "Sharknado 3")
@@ -67,7 +67,7 @@ class BinarySearchTreeTest < Minitest::Test
     refute_equal 3, result
   end
 
-  def test_it_can_insert_twelve_nodes
+  def test_it_can_find_depth_for_each_movie_when_inserting_twelve_movies
     @movies_list.each do |key, value|
       result = @tree.insert(key, value[0])
       assert_equal value[1], result
@@ -103,7 +103,7 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal expected, @tree.min
   end
 
-  def test_it_finds_another_movie_with_min_score_among_twelve_movies
+  def test_it_finds_movie_with_min_score_among_twelve_movies
     @movies_list.each do |key, value|
       result = @tree.insert(key, value[0])
     end
