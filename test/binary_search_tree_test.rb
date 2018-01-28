@@ -1,6 +1,5 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require './lib/binary_search_tree'
+require 'test_helper'
+
 
 class BinarySearchTreeTest < Minitest::Test
 
@@ -75,9 +74,7 @@ class BinarySearchTreeTest < Minitest::Test
   end
 
   def test_it_can_verify_presence_of_score_in_the_tree
-    @movies_list.each do |key, value|
-      result = @tree.insert(key, value[0])
-    end
+    load_movies
 
     assert @tree.include?(16)
     assert @tree.include?(50)
@@ -89,9 +86,7 @@ class BinarySearchTreeTest < Minitest::Test
   end
 
   def test_it_can_find_depth_of_any_movie
-    @movies_list.each do |key, value|
-      result = @tree.insert(key, value[0])
-    end
+    load_movies
 
     assert_nil nil, @tree.depth_of(nil)
     assert_equal 1, @tree.depth_of(92)
@@ -111,9 +106,7 @@ class BinarySearchTreeTest < Minitest::Test
   end
 
   def test_it_finds_movie_with_max_score_among_twelve_movies
-    @movies_list.each do |key, value|
-      result = @tree.insert(key, value[0])
-    end
+    load_movies
     expected = {"Transformers7"=>98}
     assert_equal expected, @tree.max
   end
@@ -129,9 +122,7 @@ class BinarySearchTreeTest < Minitest::Test
   end
 
   def test_it_finds_movie_with_min_score_among_twelve_movies
-    @movies_list.each do |key, value|
-      result = @tree.insert(key, value[0])
-    end
+    load_movies
     expected = {"Johnny English"=>16}
 
     assert_equal expected, @tree.min
