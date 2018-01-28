@@ -74,6 +74,20 @@ class BinarySearchTreeTest < Minitest::Test
     end
   end
 
+  def test_it_can_verify_presence_of_score_in_the_tree
+    @movies_list.each do |key, value|
+      result = @tree.insert(key, value[0])
+    end
+
+    assert @tree.include?(16)
+    assert @tree.include?(50)
+    assert @tree.include?(35)
+    assert @tree.include?(98)
+    refute @tree.include?(72)
+    refute @tree.include?(37)
+    refute @tree.include?(22)
+  end
+
   def test_it_can_find_depth_of_any_movie
     @tree.insert(61, "Bill & Ted's Excellent Adventure")
     @tree.insert(16, "Johnny English")
