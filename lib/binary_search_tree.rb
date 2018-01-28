@@ -62,11 +62,16 @@ class BinarySearchTree
     score_direction(score, title)
   end
 
+  def include?(score)
+    return true if @depth_values.keys.include?(score)
+    false
+  end
+
   def depth_of(score)
     return nil if score.nil?
     @depth_values[score]
   end
-    
+
   def max
     @current_node = @head
     until @current_node.node_right == nil do
