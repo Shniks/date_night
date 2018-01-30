@@ -105,12 +105,12 @@ class BinarySearchTree
         current_node = current_node.node_left
       end
       sorted_movies << { current_node.node_left.title => current_node.node_left.score }
-      point_parent_node_to_right_side_node(current_node)
+      point_parents_node_left_to_childs_right_side_node(current_node)
       sort_left_of_head(sorted_movies)
     end
   end
 
-  def point_parent_node_to_right_side_node(current_node)
+  def point_parents_node_left_to_childs_right_side_node(current_node)
     if current_node.node_left.node_right != nil
       current_node.node_left = current_node.node_left.node_right
     else
