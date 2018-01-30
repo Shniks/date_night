@@ -57,12 +57,12 @@ class BinarySearchTree
     depth_values.values.max
   end
 
-  def insert_head_node(score, title)
-    @head = Node.new(score, title)
-  end
-  
+
   private
 
+    def insert_head_node(score, title)
+      @head = Node.new(score, title)
+    end
 
     def score_direction(score, title, current_node)
       if score < current_node.score
