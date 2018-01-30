@@ -163,6 +163,10 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal expected, @tree.sort
   end
 
+  def test_it_can_load_movies_from_a_text_file
+    assert_equal 99, @tree.load
+  end
+
   def test_it_can_return_the_height_of_the_tree
     @movies_list.each do |key, value|
       result = @tree.insert(key, value[0])

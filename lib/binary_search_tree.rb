@@ -1,8 +1,10 @@
+require './lib/node'
 require 'pry'
 
 class BinarySearchTree
 
-  attr_reader :depth_values
+  attr_reader :depth_values,
+              :head
 
   def initialize
     @head = nil
@@ -16,7 +18,7 @@ class BinarySearchTree
   def insert(score, title)
     if @head.nil?
       insert_head_node(score, title)
-      @depth = 0
+      @depth = depth_values[score] = 0
     else
       current_node = @head
       @depth = 0
@@ -88,28 +90,29 @@ class BinarySearchTree
     { current_node.title => current_node.score }
   end
 
-  def sort(current_node = @head)
+  def sort
+    current_node = duplicate_head = @head
     sorted_movies = []
     return sorted_movies if current_node.nil?
-    sort_left_of_head(sorted_movies)
-    sorted_movies << { @head.title => @head.score }
-    sort_right_of_head(sorted_movies)
+    sort_left_of_head(duplicate_head, sorted_movies)
+    sorted_movies << { duplicate_head.title => duplicate_head.score }
+    sort_right_of_head(duplicate_head, sorted_movies)
     sorted_movies
   end
 
-  def sort_left_of_head(sorted_movies)
-    current_node = @head
-    until @head.node_left == nil do
+  def sort_left_of_head(duplicate_head, sorted_movies)
+    current_node = duplicate_head
+    until duplicate_head.node_left == nil do
       until current_node.node_left.node_left == nil do
         current_node = current_node.node_left
       end
       sorted_movies << { current_node.node_left.title => current_node.node_left.score }
-      point_parents_node_left_to_childs_right_side_node(current_node)
-      sort_left_of_head(sorted_movies)
+      point_parents_node_left_to_childs_right_side_node(duplicate_head, current_node)
+      sort_left_of_head(duplicate_head, sorted_movies)
     end
   end
 
-  def point_parents_node_left_to_childs_right_side_node(current_node)
+  def point_parents_node_left_to_childs_right_side_node(duplicate_head, current_node)
     if current_node.node_left.node_right != nil
       current_node.node_left = current_node.node_left.node_right
     else
@@ -117,13 +120,26 @@ class BinarySearchTree
     end
   end
 
-  def sort_right_of_head(sorted_movies)
-    current_node = @head
-    until @head.node_right == nil do
-      @head = @head.node_right
-      sort_left_of_head(sorted_movies)
-      sorted_movies << { @head.title => @head.score }
+  def sort_right_of_head(duplicate_head, sorted_movies)
+    current_node = duplicate_head
+    until duplicate_head.node_right == nil do
+      duplicate_head = duplicate_head.node_right
+      sort_left_of_head(duplicate_head, sorted_movies)
+      sorted_movies << { duplicate_head.title => duplicate_head.score }
     end
+  end
+
+  def load
+    movie_list = File.read('./movies.txt').split(/\r\n/)
+    count = 0
+    movie_list.each do |movie|
+      movie_info = movie.split(", ")
+      next if depth_values.keys.include?(movie_info[0])
+      insert(movie_info[0].to_i, movie_info[1])
+      count += 1
+    end
+    count
+    # binding.pry
   end
 
   def height
