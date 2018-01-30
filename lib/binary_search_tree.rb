@@ -18,50 +18,50 @@ class BinarySearchTree
       insert_head_node(score, title)
       @depth = 0
     else
-      @current_node = @head
+      current_node = @head
       @depth = 0
-      score_direction(score, title)
+      score_direction(score, title, current_node)
     end
   end
 
-  def score_direction(score, title)
-    if score < @current_node.score
-      left_of_head(score, title)
+  def score_direction(score, title, current_node)
+    if score < current_node.score
+      left_of_head(score, title, current_node)
     else
-      right_of_head(score, title)
+      right_of_head(score, title, current_node)
     end
   end
 
-  def left_of_head(score, title)
-    if @current_node.node_left == nil
-      @current_node.node_left = Node.new(score, title)
+  def left_of_head(score, title, current_node)
+    if current_node.node_left == nil
+      current_node.node_left = Node.new(score, title)
       @depth += 1
     else
-      node_travel_direction(score, title)
+      node_travel_direction(score, title, current_node)
     end
     depth_values[score] = @depth
     @depth
   end
 
-  def right_of_head(score, title)
-    if @current_node.node_right == nil
-      @current_node.node_right = Node.new(score, title)
+  def right_of_head(score, title, current_node)
+    if current_node.node_right == nil
+      current_node.node_right = Node.new(score, title)
       @depth += 1
     else
-      node_travel_direction(score, title)
+      node_travel_direction(score, title, current_node)
     end
     depth_values[score] = @depth
     @depth
   end
 
-  def node_travel_direction(score, title)
-    if score < @current_node.score
-      @current_node = @current_node.node_left
+  def node_travel_direction(score, title, current_node)
+    if score < current_node.score
+      current_node = current_node.node_left
     else
-      @current_node = @current_node.node_right
+      current_node = current_node.node_right
     end
     @depth += 1
-    score_direction(score, title)
+    score_direction(score, title, current_node)
   end
 
   def include?(score)
