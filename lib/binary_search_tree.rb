@@ -2,6 +2,8 @@ require 'pry'
 
 class BinarySearchTree
 
+  attr_reader :depth_values
+
   def initialize
     @head = nil
     @depth_values = {}
@@ -37,7 +39,7 @@ class BinarySearchTree
     else
       node_travel_direction(score, title)
     end
-    @depth_values[score] = @depth
+    depth_values[score] = @depth
     @depth
   end
 
@@ -48,7 +50,7 @@ class BinarySearchTree
     else
       node_travel_direction(score, title)
     end
-    @depth_values[score] = @depth
+    depth_values[score] = @depth
     @depth
   end
 
@@ -63,35 +65,32 @@ class BinarySearchTree
   end
 
   def include?(score)
-    return true if @depth_values.keys.include?(score)
+    return true if depth_values.keys.include?(score)
     false
   end
 
   def depth_of(score)
     return nil if score.nil?
-    @depth_values[score]
+    depth_values[score]
   end
 
-  def min
-    @current_node = @head
-    until @current_node.node_left == nil do
-      @current_node = @current_node.node_left
+  def min(current_node = @head)
+    until current_node.node_left == nil do
+      current_node = current_node.node_left
     end
-    { @current_node.title => @current_node.score }
+    { current_node.title => current_node.score }
   end
 
-  def max
-    @current_node = @head
-    until @current_node.node_right == nil do
-      @current_node = @current_node.node_right
+  def max(current_node = @head)
+    until current_node.node_right == nil do
+      current_node = current_node.node_right
     end
-    { @current_node.title => @current_node.score }
+    { current_node.title => current_node.score }
   end
 
-  def sort
-    @current_node = @head
+  def sort(current_node = @head)
     sorted_movies = []
-    return sorted_movies if @current_node.nil?
+    return sorted_movies if current_node.nil?
     sort_left_of_head(sorted_movies)
     sorted_movies << { @head.title => @head.score }
     sort_right_of_head(sorted_movies)
@@ -128,7 +127,7 @@ class BinarySearchTree
   end
 
   def height
-    @depth_values.values.max
+    depth_values.values.max
   end
 
 end
