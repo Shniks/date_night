@@ -9,10 +9,6 @@ class BinarySearchTree
     @depth_values = {}
   end
 
-  def insert_head_node(score, title)
-    @head = Node.new(score, title)
-  end
-
   def insert(score, title)
     if @head.nil?
       insert_head_node(score, title)
@@ -22,46 +18,6 @@ class BinarySearchTree
       @depth = 0
       score_direction(score, title, current_node)
     end
-  end
-
-  def score_direction(score, title, current_node)
-    if score < current_node.score
-      left_of_head(score, title, current_node)
-    else
-      right_of_head(score, title, current_node)
-    end
-  end
-
-  def left_of_head(score, title, current_node)
-    if current_node.node_left == nil
-      current_node.node_left = Node.new(score, title)
-      @depth += 1
-    else
-      node_travel_direction(score, title, current_node)
-    end
-    depth_values[score] = @depth
-    @depth
-  end
-
-  def right_of_head(score, title, current_node)
-    if current_node.node_right == nil
-      current_node.node_right = Node.new(score, title)
-      @depth += 1
-    else
-      node_travel_direction(score, title, current_node)
-    end
-    depth_values[score] = @depth
-    @depth
-  end
-
-  def node_travel_direction(score, title, current_node)
-    if score < current_node.score
-      current_node = current_node.node_left
-    else
-      current_node = current_node.node_right
-    end
-    @depth += 1
-    score_direction(score, title, current_node)
   end
 
   def include?(score)
@@ -97,37 +53,87 @@ class BinarySearchTree
     sorted_movies
   end
 
-  def sort_left_of_head(sorted_movies)
-    current_node = @head
-    until @head.node_left == nil do
-      until current_node.node_left.node_left == nil do
-        current_node = current_node.node_left
-      end
-      sorted_movies << { current_node.node_left.title => current_node.node_left.score }
-      point_parents_node_left_to_childs_right_side_node(current_node)
-      sort_left_of_head(sorted_movies)
-    end
-  end
-
-  def point_parents_node_left_to_childs_right_side_node(current_node)
-    if current_node.node_left.node_right != nil
-      current_node.node_left = current_node.node_left.node_right
-    else
-      current_node.node_left = nil
-    end
-  end
-
-  def sort_right_of_head(sorted_movies)
-    current_node = @head
-    until @head.node_right == nil do
-      @head = @head.node_right
-      sort_left_of_head(sorted_movies)
-      sorted_movies << { @head.title => @head.score }
-    end
-  end
-
   def height
     depth_values.values.max
   end
+
+
+  private
+
+    def insert_head_node(score, title)
+      @head = Node.new(score, title)
+    end
+
+    def score_direction(score, title, current_node)
+      if score < current_node.score
+        left_of_head(score, title, current_node)
+      else
+        right_of_head(score, title, current_node)
+      end
+    end
+
+    def left_of_head(score, title, current_node)
+      if current_node.node_left == nil
+        current_node.node_left = Node.new(score, title)
+        @depth += 1
+      else
+        node_travel_direction(score, title, current_node)
+      end
+      depth_values[score] = @depth
+      @depth
+    end
+
+    def right_of_head(score, title, current_node)
+      if current_node.node_right == nil
+        current_node.node_right = Node.new(score, title)
+        @depth += 1
+      else
+        node_travel_direction(score, title, current_node)
+      end
+      depth_values[score] = @depth
+      @depth
+    end
+
+    def node_travel_direction(score, title, current_node)
+      if score < current_node.score
+        current_node = current_node.node_left
+      else
+        current_node = current_node.node_right
+      end
+      @depth += 1
+      score_direction(score, title, current_node)
+    end
+
+
+
+    def sort_left_of_head(sorted_movies)
+      current_node = @head
+      until @head.node_left == nil do
+        until current_node.node_left.node_left == nil do
+          current_node = current_node.node_left
+        end
+        sorted_movies << { current_node.node_left.title => current_node.node_left.score }
+        point_parents_node_left_to_childs_right_side_node(current_node)
+        sort_left_of_head(sorted_movies)
+      end
+    end
+
+    def point_parents_node_left_to_childs_right_side_node(current_node)
+      if current_node.node_left.node_right != nil
+        current_node.node_left = current_node.node_left.node_right
+      else
+        current_node.node_left = nil
+      end
+    end
+
+    def sort_right_of_head(sorted_movies)
+      current_node = @head
+      until @head.node_right == nil do
+        @head = @head.node_right
+        sort_left_of_head(sorted_movies)
+        sorted_movies << { @head.title => @head.score }
+      end
+    end
+
 
 end
