@@ -112,7 +112,7 @@ class BinarySearchTreeTest < Minitest::Test
 
   def test_it_finds_movie_with_max_score_among_twelve_movies
     @movies_list.each do |key, value|
-      result = @tree.insert(key, value[0])
+      @tree.insert(key, value[0])
     end
     expected = {"Transformers7"=>98}
     assert_equal expected, @tree.max
@@ -130,15 +130,14 @@ class BinarySearchTreeTest < Minitest::Test
 
   def test_it_finds_movie_with_min_score_among_twelve_movies
     @movies_list.each do |key, value|
-      result = @tree.insert(key, value[0])
+      @tree.insert(key, value[0])
     end
     expected = {"Johnny English"=>16}
 
     assert_equal expected, @tree.min
   end
 
-  def test_it_can_sort_the_tree
-    skip
+  def test_it_can_sort_the_tree_with_four_values
     @tree.insert(61, "Bill & Ted's Excellent Adventure")
     @tree.insert(16, "Johnny English")
     @tree.insert(92, "Sharknado 3")
@@ -146,6 +145,20 @@ class BinarySearchTreeTest < Minitest::Test
     expected = [{"Johnny English"=>16},
     {"Hannibal Buress: Animal Furnace"=>50},
     {"Bill & Ted's Excellent Adventure"=>61}, {"Sharknado 3"=>92}]
+
+    assert_equal expected, @tree.sort
+  end
+
+  def test_it_can_sort_the_tree_with_twelve_values
+    @movies_list.each do |key, value|
+      @tree.insert(key, value[0])
+    end
+    expected = [{"Johnny English"=>16}, {"Transformers6"=>35},
+    {"Transformers1"=>40}, {"Transformers2"=>45},
+    {"Hannibal Buress: Animal Furnace"=>50}, {"Transformers3"=>55},
+    {"Bill & Ted's Excellent Adventure"=>61}, {"Transformers8"=>70},
+    {"Transformers5"=>90}, {"Sharknado 3"=>92}, {"Transformers4"=>94},
+    {"Transformers7"=>98}]
 
     assert_equal expected, @tree.sort
   end

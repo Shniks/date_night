@@ -92,7 +92,7 @@ class BinarySearchTree
     @current_node = @head
     sorted_movies = []
     return sorted_movies if @current_node.nil?
-    sort_left_of_head(sorted_movies, @current_node)
+    sort_left_of_head(sorted_movies)
     sorted_movies << { @head.title => @head.score }
     sort_right_of_head(sorted_movies)
     sorted_movies
@@ -101,31 +101,30 @@ class BinarySearchTree
   def height
     @depth_values.values.max
   end
-  
-  # def sort_left_of_head(sorted_movies, @current_node)
-  #   if score < @current_node.score
-  #     @current_node = @current_node.node_left
-  #   else
-  #     @current_node = @current_node.node_right
-  #   end
-    # sorted_movies << [@current_node.title] = @current_node.score
-    # Call the min method and put the last value in the array
-    # Per the min method, the last value is now the current node
-    # Check to see if the right node is nil
-    # If not, then move one to the right and make that current node
-    # Call min method again (recursion)
-    # Check to see if the right node is nil
-    # If nil, move up one node
-    # Not sure how to do this for multiple branches
-    # Also how does one move up one node (we have a node_next, but no node
-    # previous) - maybe if the current_node.next_node.next_node is nil,
-    # then can do previous_node = current_node?
-  # end
 
+  def sort_left_of_head(sorted_movies)
+    current_node = @head
+    until @head.node_left == nil do
+      until current_node.node_left.node_left == nil do
+        current_node = current_node.node_left
+      end
+      sorted_movies << { current_node.node_left.title => current_node.node_left.score }
+      if current_node.node_left.node_right != nil
+        current_node.node_left = current_node.node_left.node_right
+      else
+        current_node.node_left = nil
+      end
+      sort_left_of_head(sorted_movies)
+    end
+  end
 
-
-
-
-
+  def sort_right_of_head(sorted_movies)
+    current_node = @head
+    until @head.node_right == nil do
+      @head = @head.node_right
+      sort_left_of_head(sorted_movies)
+      sorted_movies << { @head.title => @head.score }
+    end
+  end
 
 end
