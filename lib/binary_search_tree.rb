@@ -98,10 +98,6 @@ class BinarySearchTree
     sorted_movies
   end
 
-  def height
-    @depth_values.values.max
-  end
-
   def sort_left_of_head(sorted_movies)
     current_node = @head
     until @head.node_left == nil do
@@ -109,12 +105,16 @@ class BinarySearchTree
         current_node = current_node.node_left
       end
       sorted_movies << { current_node.node_left.title => current_node.node_left.score }
-      if current_node.node_left.node_right != nil
-        current_node.node_left = current_node.node_left.node_right
-      else
-        current_node.node_left = nil
-      end
+      point_parent_node_to_right_side_node(current_node)
       sort_left_of_head(sorted_movies)
+    end
+  end
+
+  def point_parent_node_to_right_side_node(current_node)
+    if current_node.node_left.node_right != nil
+      current_node.node_left = current_node.node_left.node_right
+    else
+      current_node.node_left = nil
     end
   end
 
@@ -125,6 +125,10 @@ class BinarySearchTree
       sort_left_of_head(sorted_movies)
       sorted_movies << { @head.title => @head.score }
     end
+  end
+
+  def height
+    @depth_values.values.max
   end
 
 end
