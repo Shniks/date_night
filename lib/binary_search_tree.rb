@@ -89,14 +89,26 @@ class BinarySearchTree
   end
 
   def sort
+    @current_node = @head
     sorted_movies = []
-    sort_left_of_head(sorted_movies)
+    return sorted_movies if @current_node.nil?
+    sort_left_of_head(sorted_movies, @current_node)
     sorted_movies << { @head.title => @head.score }
     sort_right_of_head(sorted_movies)
     sorted_movies
   end
 
-  def sort_left_of_head
+  def height
+    @depth_values.values.max
+  end
+  
+  # def sort_left_of_head(sorted_movies, @current_node)
+  #   if score < @current_node.score
+  #     @current_node = @current_node.node_left
+  #   else
+  #     @current_node = @current_node.node_right
+  #   end
+    # sorted_movies << [@current_node.title] = @current_node.score
     # Call the min method and put the last value in the array
     # Per the min method, the last value is now the current node
     # Check to see if the right node is nil
@@ -108,7 +120,12 @@ class BinarySearchTree
     # Also how does one move up one node (we have a node_next, but no node
     # previous) - maybe if the current_node.next_node.next_node is nil,
     # then can do previous_node = current_node?
-  end
+  # end
+
+
+
+
+
 
 
 end
