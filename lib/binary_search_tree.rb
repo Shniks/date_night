@@ -130,13 +130,14 @@ class BinarySearchTree
       until current_node.node_left.node_left == nil do
         current_node = current_node.node_left
       end
-      sorted_movies << { current_node.node_left.title => current_node.node_left.score }
-      point_parents_node_left_to_childs_right_side_node(duplicate_head, current_node)
+      sorted_movies <<
+      { current_node.node_left.title => current_node.node_left.score }
+      point_parents_left_to_childs_right_node(duplicate_head, current_node)
       sort_left_of_head(duplicate_head, sorted_movies)
     end
   end
 
-  def point_parents_node_left_to_childs_right_side_node(duplicate_head, current_node)
+  def point_parents_left_to_childs_right_node(duplicate_head, current_node)
     if current_node.node_left.node_right != nil
       current_node.node_left = current_node.node_left.node_right
     else
