@@ -66,9 +66,22 @@ class BinarySearchTree
     score_direction(score, title, current_node)
   end
 
-  def include?(score)
-    return true if depth_values.keys.include?(score)
-    false
+  def include?(score, current_node = @head)
+    if current_node.nil?
+      false
+    elsif score == current_node.score
+      true
+    else
+      include_traverse(score, current_node)
+    end
+  end
+
+  def include_traverse(score, current_node)
+    if score > current_node.score
+      include?(score, current_node.node_right)
+    else
+      include?(score, current_node.node_left)
+    end
   end
 
   def depth_of(score)
@@ -139,7 +152,6 @@ class BinarySearchTree
       count += 1
     end
     count
-    # binding.pry
   end
 
   def height
