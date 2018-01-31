@@ -155,14 +155,16 @@ class BinarySearchTree
 
   def load
     movie_list = File.read('./movies.txt').split(/\r\n/)
-    count = 0
-    movie_list.each do |movie|
+    movie_list.reduce(0) do |count, movie|
       movie_info = movie.split(", ")
       next if include?(movie_info[0].to_i)
       insert(movie_info[0].to_i, movie_info[1])
       count += 1
     end
-    count
+  end
+
+  def health()
+
   end
 
 end
