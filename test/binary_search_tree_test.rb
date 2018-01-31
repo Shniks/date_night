@@ -166,8 +166,12 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal 99, @tree.load
   end
 
-  def test_it_can_return_health_of_tree
+  def test_it_can_return_height_of_tree
+    assert_equal 4, @tree.height
+  end
 
+  def test_it_can_return_health_of_tree
+    skip
     tree = BinarySearchTree.new
     tree.insert(98, "Animals United")
     tree.insert(58, "Armageddon")
