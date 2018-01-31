@@ -3,12 +3,10 @@ require 'pry'
 
 class BinarySearchTree
 
-  attr_reader :depth_values,
-              :head
+  attr_reader :head
 
   def initialize
     @head = nil
-    @depth_values = {}
   end
 
   def insert_head_node(score, title)
@@ -18,7 +16,7 @@ class BinarySearchTree
   def insert(score, title)
     if @head.nil?
       insert_head_node(score, title)
-      @depth = depth_values[score] = 0
+      @depth = 0
     else
       current_node = @head
       @depth = 0
@@ -41,7 +39,6 @@ class BinarySearchTree
     else
       node_travel_direction(score, title, current_node)
     end
-    depth_values[score] = @depth
     @depth
   end
 
@@ -52,7 +49,6 @@ class BinarySearchTree
     else
       node_travel_direction(score, title, current_node)
     end
-    depth_values[score] = @depth
     @depth
   end
 
@@ -167,10 +163,6 @@ class BinarySearchTree
       count += 1
     end
     count
-  end
-
-  def height
-    depth_values.values.max
   end
 
 end
