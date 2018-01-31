@@ -84,9 +84,24 @@ class BinarySearchTree
     end
   end
 
-  def depth_of(score)
-    return nil if score.nil?
-    depth_values[score]
+  def depth_of(score, depth = 0, current_node = @head)
+    if current_node.nil?
+      nil
+    elsif score == current_node.score
+      depth
+    else
+      depth_of_traverse(score, depth, current_node)
+    end
+  end
+
+  def depth_of_traverse(score, depth, current_node)
+    if score > current_node.score
+      depth += 1
+      depth_of(score, depth, current_node.node_right)
+    else
+      depth += 1
+      depth_of(score, depth, current_node.node_left)
+    end
   end
 
   def min(current_node = @head)
