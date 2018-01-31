@@ -115,42 +115,20 @@ class BinarySearchTree
   end
 
   def sort
-    current_node = duplicate_head = @head
-    sorted_movies = []
-    return sorted_movies if current_node.nil?
-    sort_left_of_head(duplicate_head, sorted_movies)
-    sorted_movies << { duplicate_head.title => duplicate_head.score }
-    sort_right_of_head(duplicate_head, sorted_movies)
-    sorted_movies
+    sort_subtree(@head).map {|node| {node.title => node.score}}
   end
 
-  def sort_left_of_head(duplicate_head, sorted_movies)
-    current_node = duplicate_head
-    until duplicate_head.node_left == nil do
-      until current_node.node_left.node_left == nil do
-        current_node = current_node.node_left
-      end
-      sorted_movies <<
-      { current_node.node_left.title => current_node.node_left.score }
-      point_parents_left_to_childs_right_node(duplicate_head, current_node)
-      sort_left_of_head(duplicate_head, sorted_movies)
-    end
-  end
-
-  def point_parents_left_to_childs_right_node(duplicate_head, current_node)
-    if current_node.node_left.node_right != nil
-      current_node.node_left = current_node.node_left.node_right
+  def sort_subtree(head)
+    return [] if head.nil?
+    if head.node_left && head.node_right
+      [sort_subtree(head.node_left), head,
+        sort_subtree(head.node_right)].flatten
+    elsif head.node_right.nil?
+      [sort_subtree(head.node_left), head].flatten
+    elsif head.node_left.nil?
+      [head, sort_subtree(head.node_right)].flatten
     else
-      current_node.node_left = nil
-    end
-  end
-
-  def sort_right_of_head(duplicate_head, sorted_movies)
-    current_node = duplicate_head
-    until duplicate_head.node_right == nil do
-      duplicate_head = duplicate_head.node_right
-      sort_left_of_head(duplicate_head, sorted_movies)
-      sorted_movies << { duplicate_head.title => duplicate_head.score }
+      [head]
     end
   end
 
@@ -164,8 +142,20 @@ class BinarySearchTree
     end
   end
 
-  def health()
-
+  def count(head = @head)
+    unless head.nil?
+      count(head.node_left) + 1 + count(head.node_right)
+    else
+      0
+    end
   end
+
+
+  #
+  # def health(depth)
+  #   if depth == 0
+  #     [[head.score, number_of_child_nodes, percent]]
+  #   end
+  # end
 
 end
