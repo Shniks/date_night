@@ -147,7 +147,7 @@ class BinarySearchTree
     count = 0
     movie_list.each do |movie|
       movie_info = movie.split(", ")
-      next if depth_values.keys.include?(movie_info[0])
+      next if include?(movie_info[0].to_i)
       insert(movie_info[0].to_i, movie_info[1])
       count += 1
     end
