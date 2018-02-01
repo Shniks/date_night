@@ -9,13 +9,13 @@ class BinarySearchTree
     @head = nil
   end
 
-  def insert_head_node(score, title)
-    @head = Node.new(score, title)
+  def insert_head_node(score, title, parent = nil)
+    @head = Node.new(score, title, @head)
   end
 
-  def insert(score, title)
+  def insert(score, title, parent = nil)
     if @head.nil?
-      insert_head_node(score, title)
+      insert_head_node(score, title, parent)
       @depth = 0
     else
       current_node = @head
@@ -34,7 +34,7 @@ class BinarySearchTree
 
   def left_of_head(score, title, current_node)
     if current_node.node_left == nil
-      current_node.node_left = Node.new(score, title)
+      current_node.node_left = Node.new(score, title, current_node)
       @depth += 1
     else
       node_travel_direction(score, title, current_node)
@@ -44,7 +44,7 @@ class BinarySearchTree
 
   def right_of_head(score, title, current_node)
     if current_node.node_right == nil
-      current_node.node_right = Node.new(score, title)
+      current_node.node_right = Node.new(score, title, current_node)
       @depth += 1
     else
       node_travel_direction(score, title, current_node)
@@ -189,6 +189,85 @@ class BinarySearchTree
       return 1
     else
       return leaves(head.node_left) + leaves(head.node_right)
+    end
+  end
+
+  def delete(input_node)
+    return nil if include?(input_node) == false
+    target_node = traverse_to_delete_node(input_node)
+    if target_node.node_left.nil? && target_node.node_right.nil?
+      both_nodes_are_nil(target_node)
+    elsif target_node.node_left.nil?
+      only_left_node_is_nil(target_node)
+    elsif target_node.node_right.nil?
+      only_right_node_is_nil(target_node)
+    else
+      current_node = target_node.node_right
+      until current_node.node_left == nil do
+        current_node = current_node.node_left
+      end
+      replacement_node = current_node
+      assign_replacement_node_attributes(current_node, replacement_node, target_node)
+      assign_parent_to_replacement_node(replacement_node, target_node)
+      return_value = target_node.score
+      target_node = nil
+    end
+    return_value
+  end
+
+  def both_nodes_are_nil(target_node)
+    if target_node.parent.node_left = target_node
+      target_node.parent.node_left = nil
+    else
+      target_node.parent.node_right = nil
+    end
+  end
+
+  def only_left_node_is_nil(target_node)
+    if target_node.parent.node_left = target_node
+      target_node.parent.node_left = target_node.node_right
+    else
+      target_node.parent.node_right = target_node.node_right
+    end
+  end
+
+  def only_right_node_is_nil(target_node)
+    if target_node.parent.node_left = target_node
+      target_node.parent.node_left = target_node.node_left
+    else
+      target_node.parent.node_right = target_node.node_left
+    end
+  end
+
+  def assign_replacement_node_attributes(current_node, replacement_node, target_node)
+    current_node = nil
+    replacement_node.node_left = target_node.node_left
+    replacement_node.node_right = target_node.node_right
+    replacement_node.parent = target_node.parent
+  end
+
+  def assign_parent_to_replacement_node(replacement_node, target_node)
+    if replacement_node.parent.node_left = replacement_node
+      replacement_node.parent.node_left = nil
+    else
+      replacement_node.parent.node_right = nil
+    end
+    if target_node.parent.node_left = target_node
+      target_node.parent.node_left = replacement_node
+    else
+      target_node.parent.node_right = replacement_node
+    end
+  end
+
+  def traverse_to_delete_node(input_node, head = @head)
+    if head.nil?
+      nil
+    elsif head.score == input_node
+      head
+    elsif input_node > head.score
+      traverse_to_delete_node(input_node, head.node_right)
+    else
+      traverse_to_delete_node(input_node, head.node_left)
     end
   end
 
