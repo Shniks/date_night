@@ -149,7 +149,7 @@ class BinarySearchTree
     count(head.node_left) + 1 + count(head.node_right)
   end
 
-  def find_node_by_depth(depth, head = @head, nodes_at_depth = [])
+  def find_nodes_by_depth(depth, head = @head, nodes_at_depth = [])
     if depth > height
       "Incorrect depth value! Maximum depth of this tree is #{height}."
     elsif head.nil?
@@ -157,8 +157,8 @@ class BinarySearchTree
     elsif depth == 0
       nodes_at_depth.push(head.score)
     else
-      find_node_by_depth(depth - 1, head.node_left, nodes_at_depth)
-      find_node_by_depth(depth - 1, head.node_right, nodes_at_depth)
+      find_nodes_by_depth(depth - 1, head.node_left, nodes_at_depth)
+      find_nodes_by_depth(depth - 1, head.node_right, nodes_at_depth)
     end
   end
 
