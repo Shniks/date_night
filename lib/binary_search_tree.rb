@@ -155,7 +155,7 @@ class BinarySearchTree
     elsif head.nil?
       return nodes_at_depth
     elsif depth == 0
-      nodes_at_depth.push(head.score)
+      nodes_at_depth.push(head)
     else
       find_nodes_by_depth(depth - 1, head.node_left, nodes_at_depth)
       find_nodes_by_depth(depth - 1, head.node_right, nodes_at_depth)
@@ -163,9 +163,15 @@ class BinarySearchTree
   end
 
   def health(depth)
-    if depth == 0
-      [[head.score, number_of_child_nodes, percent]]
-    end
+    if depth > height
+      "Incorrect depth value! Maximum depth of this tree is #{height}."
+    else
+      find_nodes_by_depth(depth).map do |node|
+        number_child_nodes = count(head = node)
+        [node.score, number_child_nodes, (number_child_nodes/
+          count(@head).to_f * 100).floor]
+        end
+      end
   end
 
   def height(head = @head)
