@@ -144,6 +144,21 @@ class BinarySearchTree
     end
   end
 
+  def count(head = @head)
+    unless head.nil?
+      count(head.node_left) + 1 + count(head.node_right)
+    else
+      0
+    end
+  end
+
+  #
+  # def health(depth)
+  #   if depth == 0
+  #     [[head.score, number_of_child_nodes, percent]]
+  #   end
+  # end
+
   def height(head = @head)
     return -1 if head.nil?
     if height(head.node_left) > height(head.node_right)
@@ -161,20 +176,5 @@ class BinarySearchTree
       return leaves(head.node_left) + leaves(head.node_right)
     end
   end
-
-  def count(head = @head)
-    unless head.nil?
-      count(head.node_left) + 1 + count(head.node_right)
-    else
-      0
-    end
-  end
-
-  #
-  # def health(depth)
-  #   if depth == 0
-  #     [[head.score, number_of_child_nodes, percent]]
-  #   end
-  # end
-
+  
 end
