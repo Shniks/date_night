@@ -199,7 +199,8 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal [50, 90, 94], @tree.find_nodes_by_depth(2)
     assert_equal [40, 55, 70, 98], @tree.find_nodes_by_depth(3)
     assert_equal [35, 45], @tree.find_nodes_by_depth(4)
-    assert_equal "Incorrect depth value! Maximum depth of this tree is 4.", @tree.find_nodes_by_depth(5)
+    assert_equal "Incorrect depth value! Maximum depth of this tree is 4.",
+    @tree.find_nodes_by_depth(5)
   end
 
   def test_it_can_return_health_of_tree
@@ -215,8 +216,8 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal [[98, 7, 100]], tree.health(0)
     assert_equal [[58, 6, 85]], tree.health(1)
     assert_equal [[36, 2, 28], [93, 3, 42]], tree.health(2)
-    assert_equal "Incorrect depth value! Maximum depth of this tree is 4.", tree.health(7)
-
+    assert_equal "Incorrect depth value! Maximum depth of this tree is 4.",
+    tree.health(7)
   end
 
 end
