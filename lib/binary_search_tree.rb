@@ -215,6 +215,18 @@ class BinarySearchTree
     return_value
   end
 
+  def traverse_to_delete_node(input_node, head = @head)
+    if head.nil?
+      nil
+    elsif head.score == input_node
+      head
+    elsif input_node > head.score
+      traverse_to_delete_node(input_node, head.node_right)
+    else
+      traverse_to_delete_node(input_node, head.node_left)
+    end
+  end
+
   def both_nodes_are_nil(target_node)
     if target_node.parent.node_left = target_node
       target_node.parent.node_left = nil
@@ -256,18 +268,6 @@ class BinarySearchTree
       target_node.parent.node_left = replacement_node
     else
       target_node.parent.node_right = replacement_node
-    end
-  end
-
-  def traverse_to_delete_node(input_node, head = @head)
-    if head.nil?
-      nil
-    elsif head.score == input_node
-      head
-    elsif input_node > head.score
-      traverse_to_delete_node(input_node, head.node_right)
-    else
-      traverse_to_delete_node(input_node, head.node_left)
     end
   end
 
