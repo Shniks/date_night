@@ -28,4 +28,8 @@ class NodeTest < Minitest::Test
     assert_nil nil, @node.node_right
   end
 
+  def test_node_has_a_parent
+    assert_nil nil, @node.parent
+  end
+
 end
