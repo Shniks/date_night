@@ -142,6 +142,17 @@ class BinarySearchTree
     end
   end
 
+  def height(head = @head)
+    return -1 if head.nil?
+    left_of_head_height = height(head.node_left)
+    right_of_head_height = height(head.node_right)
+    if (left_of_head_height > right_of_head_height)
+      return left_of_head_height + 1
+    else
+      return right_of_head_height + 1
+    end
+  end
+
   def count(head = @head)
     unless head.nil?
       count(head.node_left) + 1 + count(head.node_right)
@@ -149,7 +160,6 @@ class BinarySearchTree
       0
     end
   end
-
 
   #
   # def health(depth)
