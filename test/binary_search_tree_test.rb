@@ -188,8 +188,19 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal 12, @tree.count
   end
 
-  def test_it_can_return_health_of_tree
+  def test_it_can_find_nodes_by_depth
+    @movies_list.each do |key, value|
+      @tree.insert(key, value[0])
+    end
     
+    assert_equal [61], @tree.find_node_by_depth(0)
+    assert_equal [16, 92], @tree.find_node_by_depth(1)
+    assert_equal [50, 90, 94], @tree.find_node_by_depth(2)
+    assert_equal [40, 55, 70, 98], @tree.find_node_by_depth(3)
+  end
+
+  def test_it_can_return_health_of_tree
+    skip
     tree = BinarySearchTree.new
     tree.insert(98, "Animals United")
     tree.insert(58, "Armageddon")

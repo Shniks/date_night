@@ -149,12 +149,22 @@ class BinarySearchTree
     count(head.node_left) + 1 + count(head.node_right)
   end
 
-  #
-  # def health(depth)
-  #   if depth == 0
-  #     [[head.score, number_of_child_nodes, percent]]
-  #   end
-  # end
+  def find_node_by_depth(depth, head = @head, nodes_at_depth = [])
+    if head.nil?
+      return []
+    elsif depth == 0
+      nodes_at_depth.push(head.score)
+    else
+      find_node_by_depth(depth - 1, head.node_left, nodes_at_depth)
+      find_node_by_depth(depth - 1, head.node_right, nodes_at_depth)
+    end
+  end
+
+  def health(depth)
+    if depth == 0
+      [[head.score, number_of_child_nodes, percent]]
+    end
+  end
 
   def height(head = @head)
     return -1 if head.nil?
