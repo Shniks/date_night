@@ -115,7 +115,7 @@ class BinarySearchTreeTest < Minitest::Test
       @tree.insert(key, value[0])
     end
     expected = {"Transformers7"=>98}
-    
+
     assert_equal expected, @tree.max
   end
 
@@ -237,7 +237,9 @@ class BinarySearchTreeTest < Minitest::Test
     @movies_list.each do |key, value|
       @tree.insert(key, value[0])
     end
-    assert_equal 12, @tree.count
+
+    assert_equal 55, @tree.delete(55)
+    assert_nil nil, @tree.delete(120)
   end
 
 end

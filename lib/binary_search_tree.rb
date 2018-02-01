@@ -192,4 +192,13 @@ class BinarySearchTree
     end
   end
 
+  def delete(input_node)
+    return nil if include?(input_node) == false
+    binding.pry
+
+
+
+
+  end
+
 end
