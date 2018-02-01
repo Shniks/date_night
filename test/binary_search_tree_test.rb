@@ -189,7 +189,7 @@ class BinarySearchTreeTest < Minitest::Test
   end
 
   def test_it_can_return_health_of_tree
-    skip
+    
     tree = BinarySearchTree.new
     tree.insert(98, "Animals United")
     tree.insert(58, "Armageddon")
