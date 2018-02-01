@@ -70,6 +70,7 @@ class BinarySearchTreeTest < Minitest::Test
   def test_it_can_find_depth_of_each_movie_when_inserting_twelve_movies
     @movies_list.each do |key, value|
       result = @tree.insert(key, value[0])
+
       assert_equal value[1], result
     end
   end
@@ -114,6 +115,7 @@ class BinarySearchTreeTest < Minitest::Test
       @tree.insert(key, value[0])
     end
     expected = {"Transformers7"=>98}
+    
     assert_equal expected, @tree.max
   end
 
@@ -170,6 +172,7 @@ class BinarySearchTreeTest < Minitest::Test
     @movies_list.each do |key, value|
       @tree.insert(key, value[0])
     end
+
     assert_equal 4, @tree.height
   end
 
@@ -185,6 +188,7 @@ class BinarySearchTreeTest < Minitest::Test
     @movies_list.each do |key, value|
       @tree.insert(key, value[0])
     end
+
     assert_equal 12, @tree.count
   end
 
@@ -227,6 +231,13 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal [[36, 2, 28], [93, 3, 42]], tree.health(2)
     assert_equal "Incorrect depth value! Maximum depth of this tree is 4.",
     tree.health(7)
+  end
+
+  def test_it_can_delete_nodes
+    @movies_list.each do |key, value|
+      @tree.insert(key, value[0])
+    end
+    assert_equal 12, @tree.count
   end
 
 end
