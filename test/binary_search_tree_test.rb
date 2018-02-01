@@ -165,7 +165,7 @@ class BinarySearchTreeTest < Minitest::Test
   end
 
   def test_it_can_load_movies_from_a_text_file
-    assert_equal 99, @tree.load
+    assert_equal 99, @tree.load('./movies.txt')
   end
 
   def test_it_can_return_height_of_tree
