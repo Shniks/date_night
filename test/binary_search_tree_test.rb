@@ -189,18 +189,27 @@ class BinarySearchTreeTest < Minitest::Test
   end
 
   def test_it_can_find_nodes_by_depth
-    skip
     @movies_list.each do |key, value|
       @tree.insert(key, value[0])
     end
 
-    assert_equal [61], @tree.find_nodes_by_depth(0)
-    assert_equal [16, 92], @tree.find_nodes_by_depth(1)
-    assert_equal [50, 90, 94], @tree.find_nodes_by_depth(2)
-    assert_equal [40, 55, 70, 98], @tree.find_nodes_by_depth(3)
-    assert_equal [35, 45], @tree.find_nodes_by_depth(4)
-    assert_equal "Incorrect depth value! Maximum depth of this tree is 4.",
-    @tree.find_nodes_by_depth(5)
+    result = @tree.find_nodes_by_depth(0).map { |node| node.score }
+    assert_equal [61], result
+
+    result = @tree.find_nodes_by_depth(1).map { |node| node.score }
+    assert_equal [16, 92], result
+
+    result = @tree.find_nodes_by_depth(2).map { |node| node.score }
+    assert_equal [50, 90, 94], result
+
+    result = @tree.find_nodes_by_depth(3).map { |node| node.score }
+    assert_equal [40, 55, 70, 98], result
+
+    result = @tree.find_nodes_by_depth(4).map { |node| node.score }
+    assert_equal [35, 45], result
+
+    result = @tree.find_nodes_by_depth(5)
+    assert "Incorrect depth value! Maximum depth of this tree is 4.", result
   end
 
   def test_it_can_return_health_of_tree
