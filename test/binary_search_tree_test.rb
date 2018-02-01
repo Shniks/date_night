@@ -173,6 +173,14 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal 4, @tree.height
   end
 
+  def test_it_can_return_number_of_leaves_of_tree
+    @movies_list.each do |key, value|
+      @tree.insert(key, value[0])
+    end
+
+    assert_equal 5, @tree.leaves
+  end
+
   def test_it_can_count
     @movies_list.each do |key, value|
       @tree.insert(key, value[0])

@@ -115,7 +115,9 @@ class BinarySearchTree
   end
 
   def sort
-    sort_subtree(@head).map {|node| {node.title => node.score}}
+    sort_subtree(@head).map do |node|
+      {node.title => node.score}
+    end
   end
 
   def sort_subtree(head)
@@ -144,12 +146,10 @@ class BinarySearchTree
 
   def height(head = @head)
     return -1 if head.nil?
-    left_of_head_height = height(head.node_left)
-    right_of_head_height = height(head.node_right)
-    if (left_of_head_height > right_of_head_height)
-      return left_of_head_height + 1
+    if height(head.node_left) > height(head.node_right)
+      return height(head.node_left) + 1
     else
-      return right_of_head_height + 1
+      return height(head.node_right) + 1
     end
   end
 
