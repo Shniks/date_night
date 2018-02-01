@@ -238,7 +238,7 @@ class BinarySearchTreeTest < Minitest::Test
       @tree.insert(key, value[0])
     end
 
-    assert_equal 55, @tree.delete(55)
+    assert_equal 50, @tree.delete(50)
     assert_nil nil, @tree.delete(120)
   end
 

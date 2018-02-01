@@ -194,11 +194,23 @@ class BinarySearchTree
 
   def delete(input_node)
     return nil if include?(input_node) == false
+    target_node = traverse_to_delete_node(input_node)
+    if target_node.node_left == nil
+    end
+
     binding.pry
+  end
 
-
-
-
+  def traverse_to_delete_node(input_node, head = @head)
+    if head.nil?
+      nil
+    elsif head.score == input_node
+      head
+    elsif input_node > head.score
+      traverse_to_delete_node(input_node, head.node_right)
+    else
+      traverse_to_delete_node(input_node, head.node_left)
+    end
   end
 
 end
