@@ -134,8 +134,8 @@ class BinarySearchTree
     end
   end
 
-  def load
-    movie_list = File.read('./movies.txt').split(/\r\n/)
+  def load(file)
+    movie_list = File.read(file).split(/\n/)
     movie_list.reduce(0) do |count, movie|
       movie_info = movie.split(", ")
       next if include?(movie_info[0].to_i)
