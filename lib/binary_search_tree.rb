@@ -151,7 +151,7 @@ class BinarySearchTree
 
   def find_node_by_depth(depth, head = @head, nodes_at_depth = [])
     if head.nil?
-      return []
+      return nodes_at_depth
     elsif depth == 0
       nodes_at_depth.push(head.score)
     else
